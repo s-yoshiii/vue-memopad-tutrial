@@ -3,10 +3,10 @@ import { computed } from "vue";
 import { useStore } from "vuex";
 const store = useStore();
 const memos = computed(() => {
-  return store.state.memos;
+  return store.getters.getAll;
 });
 const hasMemos = computed(() => {
-  return store.state.memos.length > 0;
+  return store.getters.getCount;
 });
 </script>
 <template>
