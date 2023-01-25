@@ -1,9 +1,8 @@
-<template>
-  <div>New View</div>
-</template>
-
-<script>
-export default {};
+<script setup>
+import MemoForm from "@/components/MemoForm.vue";
 </script>
-
-<style></style>
+<template>
+  <div class="new">
+    <MemoForm />
+  </div>
+</template>
