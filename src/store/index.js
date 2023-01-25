@@ -1,14 +1,16 @@
-import { createStore } from 'vuex'
+import { createStore } from "vuex";
 
 export default createStore({
   state: {
+    memos: [],
   },
-  getters: {
-  },
+  getters: {},
   mutations: {
+    // メモを保存する
+    save(state, newMemo) {
+      state.memos.unshift(newMemo);
+    },
   },
-  actions: {
-  },
-  modules: {
-  }
-})
+  actions: {},
+  modules: {},
+});

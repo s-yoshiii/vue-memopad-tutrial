@@ -1,8 +1,20 @@
+<script setup>
+import { useStore } from "vuex";
+const store = useStore();
+const save = () => {
+  let memo = {
+    title: "メモのタイトルです。",
+    content: "メモの内容です。",
+  };
+  store.commit("save", memo);
+};
+</script>
+
 <template>
   <div><input type="text" /></div>
   <div><textarea cols="30" rows="10"></textarea></div>
   <div class="center">
-    <button type="button">保存</button>
+    <button type="button" @click="save()">保存</button>
   </div>
 </template>
 
