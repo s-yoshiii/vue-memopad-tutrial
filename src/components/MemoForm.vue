@@ -4,7 +4,6 @@ import { useRouter } from "vue-router";
 import { useStore } from "vuex";
 const props = defineProps(["memo"]);
 const memo = toRef(props, "memo");
-console.log(memo.value);
 const store = useStore();
 const router = useRouter();
 const tl = ref(memo.value.title);
