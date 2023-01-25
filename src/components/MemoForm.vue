@@ -1,17 +1,22 @@
 <script setup>
-import { ref } from "@vue/reactivity";
+import { ref, defineProps } from "vue";
 import { useRouter } from "vue-router";
 import { useStore } from "vuex";
+const props = defineProps(["memo"]);
 const store = useStore();
 const router = useRouter();
-const tl = ref("");
-const cont = ref("");
+const tl = ref(props.memo.title);
+const cont = ref(props.memo.content);
 const save = (tl, cont) => {
-  let memo = {
+  let tempMemo = {
     title: tl,
     content: cont,
+    id: null,
   };
-  store.commit("save", memo);
+  if (props.memo.id) {
+    tempMemo.id = props.memo.id;
+  }
+  store.commit("save", tempMemo);
   router.push("/");
 };
 </script>

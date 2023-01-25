@@ -13,8 +13,8 @@ const memo = computed(() => {
 
 <template>
   <h2>Edit id:{{ route.params.id }}</h2>
-  <MemoForm />
-  {{ memo.title }}
+  <MemoForm v-if="memo" :memo="memo" />
+  <p v-else>指定されたメモはありません。</p>
 </template>
 
 <style></style>
