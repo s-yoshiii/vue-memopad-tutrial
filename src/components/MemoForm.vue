@@ -19,6 +19,10 @@ const save = (tl, cont) => {
   store.commit("save", tempMemo);
   router.push("/");
 };
+const remove = () => {
+  store.commit("delete", props.memo.id);
+  router.push("/");
+};
 </script>
 
 <template>
@@ -26,6 +30,7 @@ const save = (tl, cont) => {
   <div><textarea cols="30" rows="10" v-model="cont"></textarea></div>
   <div class="center">
     <button type="button" @click="save(tl, cont)">保存</button>
+    <button type="button" v-if="props.memo.id" @click="remove()">削除</button>
   </div>
 </template>
 
