@@ -13,7 +13,9 @@ const hasMemos = computed(() => {
   <div class="home">
     <ul v-if="hasMemos">
       <li v-for="memo in memos" :key="memo.id">
-        <a href="">{{ memo.title }}</a>
+        <router-link :to="{ name: 'edit', params: { id: memo.id } }">{{
+          memo.title
+        }}</router-link>
       </li>
     </ul>
     <p v-else>メモがありません。</p>
