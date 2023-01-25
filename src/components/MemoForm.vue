@@ -1,26 +1,32 @@
 <script setup>
-import { ref, defineProps } from "vue";
+import { ref, toRef, defineProps } from "vue";
 import { useRouter } from "vue-router";
 import { useStore } from "vuex";
 const props = defineProps(["memo"]);
+const memo = toRef(props, "memo");
+console.log(memo.value);
 const store = useStore();
 const router = useRouter();
-const tl = ref(props.memo.title);
-const cont = ref(props.memo.content);
+const tl = ref(memo.value.title);
+const cont = ref(memo.value.content);
 const save = (tl, cont) => {
   let tempMemo = {
     title: tl,
     content: cont,
     id: null,
   };
-  if (props.memo.id) {
-    tempMemo.id = props.memo.id;
+  if (memo.value.id) {
+    tempMemo.id = memo.value.id;
+  }
+  if (!tl) {
+    alert("タイトルは必須です");
+    return;
   }
   store.commit("save", tempMemo);
   router.push("/");
 };
 const remove = () => {
-  store.commit("delete", props.memo.id);
+  store.commit("delete", memo.value.id);
   router.push("/");
 };
 </script>
