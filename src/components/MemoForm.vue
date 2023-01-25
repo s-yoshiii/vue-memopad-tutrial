@@ -1,20 +1,26 @@
 <script setup>
+import { ref } from "@vue/reactivity";
+import { useRouter } from "vue-router";
 import { useStore } from "vuex";
 const store = useStore();
-const save = () => {
+const router = useRouter();
+const tl = ref("");
+const cont = ref("");
+const save = (tl, cont) => {
   let memo = {
-    title: "メモのタイトルです。",
-    content: "メモの内容です。",
+    title: tl,
+    content: cont,
   };
   store.commit("save", memo);
+  router.push("/");
 };
 </script>
 
 <template>
-  <div><input type="text" /></div>
-  <div><textarea cols="30" rows="10"></textarea></div>
+  <div><input type="text" v-model="tl" /></div>
+  <div><textarea cols="30" rows="10" v-model="cont"></textarea></div>
   <div class="center">
-    <button type="button" @click="save()">保存</button>
+    <button type="button" @click="save(tl, cont)">保存</button>
   </div>
 </template>
 
